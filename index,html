@@ -4,197 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MFRGS INOVAÇÕES | High-End Digital Engineering</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
-            colors: { ouro: '#D4AF37', 'verde-dark': '#0D1310', 'verde-card': '#161D19', 'texto-muted': '#A0AEC0' },
-            animation: { 'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }
+            colors: { ouro: '#D4AF37', 'verde-dark': '#0D1310', 'verde-card': '#161D19', 'texto-muted': '#A0AEC0' }
           }
         }
       }
     </script>
     <style>
       body { background-color: #0D1310; color: #FFFFFF; scroll-behavior: smooth; overflow-x: hidden; }
-      .bg-glow { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 100vh; background: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.08), transparent 45%); z-index: -1; pointer-events: none; }
-      .glass { background: rgba(22, 29, 25, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.03); }
-      .bento-inner { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-      .bento-inner:hover { transform: translateY(-5px); border-color: #D4AF37; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+      .bg-glow { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 100vh; background: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.1), transparent 45%); z-index: -1; pointer-events: none; }
+      .glass { background: rgba(22, 29, 25, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+      .bento-card { transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.03); }
+      .bento-card:hover { border-color: #D4AF37; transform: translateY(-5px); }
     </style>
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@18.2.0",
-        "react-dom": "https://esm.sh/react-dom@18.2.0",
-        "lucide-react": "https://esm.sh/lucide-react@0.284.0"
-      }
-    }
-    </script>
 </head>
 <body>
     <div id="root"></div>
     <div class="bg-glow"></div>
 
-    <script type="module">
-        import React, { useState, useEffect } from 'react';
-        import { createRoot } from 'react-dom/client';
-        import { Terminal, Sparkles, X, Cpu, Star, Mail, Phone, MapPin, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-        // --- COMPONENTE: NAVBAR ---
-        const Navbar = ({ onOpenAI }) => (
-            <nav className="fixed top-0 w-full z-50 glass border-b border-white/5 h-20 flex items-center">
-                <div className="container mx-auto px-6 flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-ouro rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-                            <Terminal className="text-verde-dark" size={22} />
-                        </div>
-                        <span className="font-extrabold text-xl tracking-tighter uppercase">MFRGS <span className="text-ouro font-light">INOVAÇÕES</span></span>
-                    </div>
-                    <div className="hidden lg:flex gap-10 text-[11px] font-black uppercase tracking-[0.2em] text-texto-muted">
-                        <a href="#servicos" className="hover:text-ouro transition">Serviços</a>
-                        <a href="#portfolio" className="hover:text-ouro transition">Portfólio</a>
-                        <a href="#depoimentos" className="hover:text-ouro transition">Autoridade</a>
-                        <a href="#contato" className="hover:text-ouro transition">Contato</a>
-                    </div>
-                    <button onClick={onOpenAI} className="bg-white/5 hover:bg-ouro hover:text-verde-dark text-white px-5 py-2.5 rounded-full border border-white/10 transition-all flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
-                        <Sparkles size={14} /> Arquiteto IA
-                    </button>
-                </div>
-            </nav>
-        );
-
-        // --- COMPONENTE: HERO ---
-        const Hero = () => (
-            <section className="relative pt-48 pb-32 px-6 overflow-hidden">
-                <div className="container mx-auto text-center relative z-10">
-                    <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-10 animate-pulse-slow">
-                        <span className="w-2 h-2 bg-ouro rounded-full shadow-[0_0_8px_#D4AF37]"></span>
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-ouro">Liderando a Revolução Digital</span>
-                    </div>
-                    <h1 className="text-6xl md:text-[100px] font-black tracking-tighter leading-[0.9] mb-10">
-                        Sua Visão <br/> <span className="text-transparent bg-clip-text bg-gradient-to-b from-ouro to-[#B8860B]">Materializada.</span>
-                    </h1>
-                    <p className="max-w-xl mx-auto text-texto-muted text-lg md:text-xl font-light mb-12 leading-relaxed">
-                        Engenharia digital de alta performance para quem não aceita o comum. Criamos ecossistemas que dominam mercados.
-                    </p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-5">
-                        <a href="#contato" className="bg-ouro text-verde-dark px-12 py-5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-[0_20px_40px_rgba(212,175,55,0.2)] hover:scale-105 transition-all">Iniciar Consultoria</a>
-                        <a href="#portfolio" className="glass px-12 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-all flex items-center justify-center gap-2">Ver Portfólio <ArrowUpRight size={18}/></a>
-                    </div>
-                </div>
-            </section>
-        );
+        // --- COMPONENTE DE ÍCONES (Lucide Fix) ---
+        const Icon = ({ name, size = 24, className = "" }) => {
+            useEffect(() => { lucide.createIcons(); }, []);
+            return <i data-lucide={name} style={{width: size, height: size}} className={className}></i>;
+        };
 
         const App = () => {
             const [showAI, setShowAI] = useState(false);
 
             return (
-                <div className="min-h-screen selection:bg-ouro selection:text-verde-dark">
-                    <Navbar onOpenAI={() => setShowAI(true)} />
-                    
-                    <main>
-                        <Hero />
-
-                        {/* SEÇÃO SERVIÇOS (ESTILO BENTO) */}
-                        <section id="servicos" className="py-32 container mx-auto px-6">
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div className="md:col-span-2 glass p-12 rounded-[3rem] bento-inner flex flex-col justify-end min-h-[400px]">
-                                    <div className="text-5xl mb-8">🏛️</div>
-                                    <h3 className="text-3xl font-black text-ouro mb-4 tracking-tighter uppercase">Arquitetura Institucional</h3>
-                                    <p className="text-texto-muted max-w-md">Sites que transmitem autoridade absoluta. Não é apenas uma página, é a sede digital do seu império corporativo.</p>
+                <div className="min-h-screen">
+                    {/* NAVBAR */}
+                    <nav className="fixed top-0 w-full z-50 glass border-b border-white/5 h-20 flex items-center">
+                        <div className="container mx-auto px-6 flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-ouro rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                                    <Icon name="terminal" className="text-verde-dark" />
                                 </div>
-                                <div className="glass p-12 rounded-[3rem] bento-inner flex flex-col justify-end">
-                                    <div className="text-5xl mb-8">🚀</div>
-                                    <h3 className="text-2xl font-black text-ouro mb-4 tracking-tighter uppercase">Máquinas de ROI</h3>
-                                    <p className="text-texto-muted text-sm">Landing Pages construídas com psicologia de vendas para conversão máxima.</p>
-                                </div>
-                                <div className="glass p-12 rounded-[3rem] bento-inner flex flex-col justify-end min-h-[300px]">
-                                    <div className="text-5xl mb-8">💎</div>
-                                    <h3 className="text-2xl font-black text-ouro mb-4 tracking-tighter uppercase">Elite Design</h3>
-                                    <p className="text-texto-muted text-sm">Portfólios magnéticos que elevam sua carreira ao patamar de luxo que ela exige.</p>
-                                </div>
-                                <div className="md:col-span-2 glass p-12 rounded-[3rem] bento-inner flex items-center justify-between">
-                                    <div>
-                                        <h3 className="text-3xl font-black mb-2 tracking-tighter">PRONTO PARA O PRÓXIMO NÍVEL?</h3>
-                                        <p className="text-texto-muted uppercase text-[10px] tracking-widest">Sistemas escaláveis e infraestrutura de elite.</p>
-                                    </div>
-                                    <CheckCircle2 className="text-ouro" size={48} />
-                                </div>
+                                <span className="font-extrabold text-xl tracking-tighter uppercase">MFRGS <span className="text-ouro font-light">INOVAÇÕES</span></span>
                             </div>
-                        </section>
+                            <button onClick={() => setShowAI(true)} className="bg-ouro text-verde-dark px-5 py-2 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest hover:scale-105 transition">
+                                <Icon name="sparkles" size={14} /> Arquiteto IA
+                            </button>
+                        </div>
+                    </nav>
 
-                        {/* DEPOIMENTOS (AUTORIDADE) */}
-                        <section id="depoimentos" className="py-32 bg-white/[0.02]">
-                            <div className="container mx-auto px-6">
-                                <div className="text-center mb-20">
-                                    <h2 className="text-ouro text-[10px] font-black tracking-[0.4em] uppercase mb-4">Autoridade Reconhecida</h2>
-                                    <h3 className="text-4xl md:text-5xl font-black tracking-tighter">O que dizem os líderes</h3>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                    {[
-                                        { n: "Carlos Silva", c: "CEO, TechCorp", t: "A MFRGS transformou nossa presença digital. O site transmite exatamente a autoridade que precisávamos." },
-                                        { n: "Mariana Oliveira", c: "Dir. Marketing, Innovate", t: "Landing page com resultados absurdos. Aumentamos 250% nossa captação em 2 meses." },
-                                        { n: "Rafael Mendes", c: "Designer & Dev", t: "Profissionalismo e qualidade incomparáveis. Meu portfólio nunca recebeu tantos elogios." }
-                                    ].map((d, i) => (
-                                        <div key={i} className="glass p-10 rounded-[2.5rem] relative">
-                                            <div className="flex gap-1 mb-6">
-                                                {[...Array(5)].map((_, i) => <Star key={i} size={14} className="text-ouro" fill="#D4AF37" />)}
-                                            </div>
-                                            <p className="text-texto-muted italic mb-8 leading-relaxed">"{d.t}"</p>
-                                            <div className="font-bold tracking-tighter uppercase text-sm">{d.n}</div>
-                                            <div className="text-[10px] text-ouro font-black tracking-widest uppercase mt-1">{d.c}</div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </section>
+                    {/* HERO */}
+                    <section className="pt-48 pb-20 px-6 text-center">
+                        <div className="inline-block bg-ouro/10 text-ouro px-4 py-1 rounded-full border border-ouro/20 text-[10px] font-black uppercase tracking-[0.3em] mb-10">Sua Visão Materializada</div>
+                        <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8">
+                            Engenharia de <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-ouro to-yellow-200">Presença Digital</span>
+                        </h1>
+                        <p className="max-w-xl mx-auto text-texto-muted text-lg mb-12">Projetamos ecossistemas digitais para quem exige o topo do mercado.</p>
+                        <div className="flex flex-col sm:flex-row justify-center gap-4">
+                            <button className="bg-ouro text-verde-dark px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-[0_20px_40px_rgba(212,175,55,0.2)]">Solicitar Diagnóstico</button>
+                            <button className="glass px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest border border-white/10">Ver Projetos</button>
+                        </div>
+                    </section>
 
-                        {/* CONTATO */}
-                        <section id="contato" className="py-32 container mx-auto px-6">
-                            <div className="glass rounded-[4rem] p-10 md:p-20 grid grid-cols-1 lg:grid-cols-2 gap-20">
-                                <div>
-                                    <h3 className="text-5xl font-black mb-8 tracking-tighter uppercase">Materialize <br/> Sua Visão</h3>
-                                    <p className="text-texto-muted mb-12 text-lg">Não somos apenas prestadores de serviço. Somos seus parceiros de engenharia digital.</p>
-                                    <div className="space-y-8">
-                                        <div className="flex items-center gap-5 font-bold text-sm"><Mail className="text-ouro" size={24}/> contato@mfrgsinovacoes.com.br</div>
-                                        <div className="flex items-center gap-5 font-bold text-sm"><Phone className="text-ouro" size={24}/> +55 (00) 00000-0000</div>
-                                        <div className="flex items-center gap-5 font-bold text-sm"><MapPin className="text-ouro" size={24}/> Atendimento Nacional e Internacional</div>
-                                    </div>
-                                </div>
-                                <div className="flex flex-col gap-5">
-                                    <input type="text" placeholder="Nome Completo" className="bg-verde-dark/50 p-6 rounded-2xl border border-white/5 outline-none focus:border-ouro transition-all" />
-                                    <input type="email" placeholder="E-mail Corporativo" className="bg-verde-dark/50 p-6 rounded-2xl border border-white/5 outline-none focus:border-ouro transition-all" />
-                                    <textarea placeholder="Como podemos impulsionar seu império digital?" rows="5" className="bg-verde-dark/50 p-6 rounded-2xl border border-white/5 outline-none focus:border-ouro transition-all"></textarea>
-                                    <button className="bg-ouro text-verde-dark py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:brightness-110 transition-all">Enviar Proposta</button>
-                                </div>
-                            </div>
-                        </section>
-                    </main>
+                    {/* BENTO SERVICES */}
+                    <section className="py-20 container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="md:col-span-2 glass p-10 rounded-[3rem] bento-card">
+                            <div className="text-4xl mb-6">🏛️</div>
+                            <h3 className="text-2xl font-black text-ouro mb-4 uppercase">Arquitetura Institucional</h3>
+                            <p className="text-texto-muted">Sites que transmitem autoridade absoluta e dominam o mercado digital.</p>
+                        </div>
+                        <div className="glass p-10 rounded-[3rem] bento-card">
+                            <div className="text-4xl mb-6">🚀</div>
+                            <h3 className="text-xl font-black text-ouro mb-2 uppercase">Conversão</h3>
+                            <p className="text-texto-muted text-sm">Landing Pages focadas em ROI e captação B2B de elite.</p>
+                        </div>
+                    </section>
 
                     {/* FOOTER */}
-                    <footer className="py-20 border-t border-white/5 text-center">
-                        <div className="text-ouro text-sm font-light italic mb-8 opacity-60">"A vontade de Deus é o nosso norte."</div>
-                        <div className="flex justify-center gap-8 mb-10 text-[10px] font-black uppercase tracking-widest text-texto-muted">
-                            <a href="#" className="hover:text-white transition">Início</a>
-                            <a href="#servicos" className="hover:text-white transition">Serviços</a>
-                            <a href="#contato" className="hover:text-white transition">Contato</a>
-                        </div>
-                        <p className="text-[10px] text-white/20 tracking-[0.5em] uppercase font-bold">© 2026 MFRGS INOVAÇÕES</p>
+                    <footer className="py-20 text-center opacity-50">
+                        <p className="italic text-ouro mb-4 text-sm">"A vontade de Deus é o nosso norte."</p>
+                        <p className="text-[10px] tracking-[0.5em] uppercase">© 2026 MFRGS INOVAÇÕES</p>
                     </footer>
 
                     {/* MODAL IA */}
                     {showAI && (
-                        <div className="fixed inset-0 z-[100] bg-verde-dark/98 flex items-center justify-center p-6 backdrop-blur-3xl">
-                            <div className="glass max-w-lg w-full p-12 rounded-[3rem] relative shadow-[0_0_100px_rgba(212,175,55,0.1)]">
-                                <button onClick={() => setShowAI(false)} className="absolute top-10 right-10 text-texto-muted hover:text-ouro transition"><X size={32}/></button>
-                                <Cpu className="text-ouro mb-8" size={50} />
-                                <h4 className="text-3xl font-black mb-4 tracking-tighter uppercase">Arquiteto MFRGS AI</h4>
-                                <p className="text-texto-muted mb-8 font-light leading-relaxed">Diga o que você precisa e nossa inteligência estruturará seu projeto high-end em tempo real.</p>
-                                <input type="text" placeholder="Qual o seu segmento de mercado?" className="w-full bg-verde-dark border border-white/10 p-5 rounded-2xl mb-5 focus:border-ouro outline-none text-white transition-all" />
-                                <button className="w-full bg-ouro text-verde-dark py-5 rounded-2xl font-black tracking-widest uppercase hover:scale-[1.02] transition-all">Analisar Viabilidade</button>
+                        <div className="fixed inset-0 z-[100] bg-verde-dark/95 flex items-center justify-center p-6 backdrop-blur-xl">
+                            <div className="glass max-w-lg w-full p-10 rounded-[3rem] relative">
+                                <button onClick={() => setShowAI(false)} className="absolute top-8 right-8 text-texto-muted"><Icon name="x" size={32}/></button>
+                                <Icon name="cpu" size={48} className="text-ouro mb-6" />
+                                <h4 className="text-2xl font-black mb-4 uppercase tracking-tighter">Arquiteto AI</h4>
+                                <input type="text" placeholder="Qual o seu mercado?" className="w-full bg-verde-dark border border-white/10 p-5 rounded-2xl mb-4 text-white focus:border-ouro outline-none" />
+                                <button className="w-full bg-ouro text-verde-dark py-5 rounded-2xl font-black uppercase">Analisar</button>
                             </div>
                         </div>
                     )}
@@ -202,7 +113,7 @@
             );
         };
 
-        const root = createRoot(document.getElementById('root'));
+        const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
 </body>
