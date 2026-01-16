@@ -3,118 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MFRGS INOVAÇÕES | High-End Digital Engineering</title>
-    
+    <title>MFRGS INOVAÇÕES | Engenharia de Elite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
-            colors: { ouro: '#D4AF37', 'verde-dark': '#0D1310', 'verde-card': '#161D19', 'texto-muted': '#A0AEC0' }
-          }
-        }
-      }
-    </script>
     <style>
-      body { background-color: #0D1310; color: #FFFFFF; scroll-behavior: smooth; overflow-x: hidden; }
-      .bg-glow { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 100vh; background: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.1), transparent 45%); z-index: -1; pointer-events: none; }
-      .glass { background: rgba(22, 29, 25, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
-      .bento-card { transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.03); }
-      .bento-card:hover { border-color: #D4AF37; transform: translateY(-5px); }
+        body { background-color: #0D1310; color: #FFFFFF; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        .ouro-text { background: linear-gradient(to bottom, #D4AF37, #B8860B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass { background: rgba(22, 29, 25, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+        .bg-glow { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 100vh; background: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.1), transparent 50%); z-index: -1; }
+        .bento { transition: all 0.3s ease; }
+        .bento:hover { border-color: #D4AF37; transform: translateY(-5px); }
     </style>
 </head>
 <body>
-    <div id="root"></div>
     <div class="bg-glow"></div>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-
-        // --- COMPONENTE DE ÍCONES (Lucide Fix) ---
-        const Icon = ({ name, size = 24, className = "" }) => {
-            useEffect(() => { lucide.createIcons(); }, []);
-            return <i data-lucide={name} style={{width: size, height: size}} className={className}></i>;
-        };
-
-        const App = () => {
-            const [showAI, setShowAI] = useState(false);
-
-            return (
-                <div className="min-h-screen">
-                    {/* NAVBAR */}
-                    <nav className="fixed top-0 w-full z-50 glass border-b border-white/5 h-20 flex items-center">
-                        <div className="container mx-auto px-6 flex justify-between items-center">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-ouro rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-                                    <Icon name="terminal" className="text-verde-dark" />
-                                </div>
-                                <span className="font-extrabold text-xl tracking-tighter uppercase">MFRGS <span className="text-ouro font-light">INOVAÇÕES</span></span>
-                            </div>
-                            <button onClick={() => setShowAI(true)} className="bg-ouro text-verde-dark px-5 py-2 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest hover:scale-105 transition">
-                                <Icon name="sparkles" size={14} /> Arquiteto IA
-                            </button>
-                        </div>
-                    </nav>
-
-                    {/* HERO */}
-                    <section className="pt-48 pb-20 px-6 text-center">
-                        <div className="inline-block bg-ouro/10 text-ouro px-4 py-1 rounded-full border border-ouro/20 text-[10px] font-black uppercase tracking-[0.3em] mb-10">Sua Visão Materializada</div>
-                        <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8">
-                            Engenharia de <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-ouro to-yellow-200">Presença Digital</span>
-                        </h1>
-                        <p className="max-w-xl mx-auto text-texto-muted text-lg mb-12">Projetamos ecossistemas digitais para quem exige o topo do mercado.</p>
-                        <div className="flex flex-col sm:flex-row justify-center gap-4">
-                            <button className="bg-ouro text-verde-dark px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-[0_20px_40px_rgba(212,175,55,0.2)]">Solicitar Diagnóstico</button>
-                            <button className="glass px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest border border-white/10">Ver Projetos</button>
-                        </div>
-                    </section>
-
-                    {/* BENTO SERVICES */}
-                    <section className="py-20 container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="md:col-span-2 glass p-10 rounded-[3rem] bento-card">
-                            <div className="text-4xl mb-6">🏛️</div>
-                            <h3 className="text-2xl font-black text-ouro mb-4 uppercase">Arquitetura Institucional</h3>
-                            <p className="text-texto-muted">Sites que transmitem autoridade absoluta e dominam o mercado digital.</p>
-                        </div>
-                        <div className="glass p-10 rounded-[3rem] bento-card">
-                            <div className="text-4xl mb-6">🚀</div>
-                            <h3 className="text-xl font-black text-ouro mb-2 uppercase">Conversão</h3>
-                            <p className="text-texto-muted text-sm">Landing Pages focadas em ROI e captação B2B de elite.</p>
-                        </div>
-                    </section>
-
-                    {/* FOOTER */}
-                    <footer className="py-20 text-center opacity-50">
-                        <p className="italic text-ouro mb-4 text-sm">"A vontade de Deus é o nosso norte."</p>
-                        <p className="text-[10px] tracking-[0.5em] uppercase">© 2026 MFRGS INOVAÇÕES</p>
-                    </footer>
-
-                    {/* MODAL IA */}
-                    {showAI && (
-                        <div className="fixed inset-0 z-[100] bg-verde-dark/95 flex items-center justify-center p-6 backdrop-blur-xl">
-                            <div className="glass max-w-lg w-full p-10 rounded-[3rem] relative">
-                                <button onClick={() => setShowAI(false)} className="absolute top-8 right-8 text-texto-muted"><Icon name="x" size={32}/></button>
-                                <Icon name="cpu" size={48} className="text-ouro mb-6" />
-                                <h4 className="text-2xl font-black mb-4 uppercase tracking-tighter">Arquiteto AI</h4>
-                                <input type="text" placeholder="Qual o seu mercado?" className="w-full bg-verde-dark border border-white/10 p-5 rounded-2xl mb-4 text-white focus:border-ouro outline-none" />
-                                <button className="w-full bg-ouro text-verde-dark py-5 rounded-2xl font-black uppercase">Analisar</button>
-                            </div>
-                        </div>
-                    )}
+    <nav class="fixed top-0 w-full z-50 glass h-20 flex items-center">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#D4AF37] rounded-xl flex items-center justify-center">
+                    <span style="color: #0D1310; font-weight: 900;">>_</span>
                 </div>
-            );
-        };
+                <span class="font-extrabold text-xl tracking-tighter uppercase">MFRGS <span class="text-[#D4AF37] font-light">INOVAÇÕES</span></span>
+            </div>
+            <a href="https://wa.me/5500000000000" class="bg-[#D4AF37] text-[#0D1310] px-6 py-2.5 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition">Consultoria</a>
+        </div>
+    </nav>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
+    <main class="container mx-auto px-6 pt-48 text-center">
+        <div class="inline-block border border-[#D4AF37]/30 bg-[#D4AF37]/10 text-[#D4AF37] px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-10">Sua Visão Materializada</div>
+        <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-10">
+            Engenharia de <br> <span class="ouro-text">Presença Digital</span>
+        </h1>
+        <p class="max-w-xl mx-auto text-[#A0AEC0] text-lg mb-12 font-light">
+            Não construímos apenas sites. Projetamos ecossistemas de alta performance para quem não aceita o comum.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-32">
+            <button class="bg-[#D4AF37] text-[#0D1310] px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-[0_20px_40px_rgba(212,175,55,0.2)]">Iniciar Projeto</button>
+            <button class="glass px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest border border-white/10">Ver Portfólio</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left pb-32">
+            <div class="md:col-span-2 glass p-10 rounded-[3rem] bento">
+                <div class="text-4xl mb-6">🏛️</div>
+                <h3 class="text-2xl font-black text-[#D4AF37] mb-4 uppercase">Arquitetura Institucional</h3>
+                <p class="text-[#A0AEC0]">Sites que transmitem autoridade absoluta. A sede digital do seu império corporativo.</p>
+            </div>
+            <div class="glass p-10 rounded-[3rem] bento">
+                <div class="text-4xl mb-6">🚀</div>
+                <h3 class="text-xl font-black text-[#D4AF37] mb-2 uppercase">Conversão</h3>
+                <p class="text-[#A0AEC0] text-sm font-light">Landing Pages focadas em ROI máximo e captação de leads qualificados.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-20 border-t border-white/5 text-center">
+        <p class="italic text-[#D4AF37] mb-4 text-sm opacity-60">"A vontade de Deus é o nosso norte."</p>
+        <p class="text-[10px] tracking-[0.5em] text-[#A0AEC0] uppercase font-bold">© 2026 MFRGS INOVAÇÕES</p>
+    </footer>
 </body>
 </html>
